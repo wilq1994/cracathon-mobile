@@ -83,25 +83,27 @@ function piechart(container, json){
     badCircle(150,120,radius,data.good.max+data.good.max+data.bad.max);
 }
 
-// $.getJSON("http://localhost:8080/positiondata?user=1", function(result){
-//     piechart('#chart1', result['daily']);
-//     piechart('#chart2', result['daily']);
-//     piechart('#chart3', result['daily']);
-// })
-
 $(document).ready(function(){
-    piechart('#chart1', {
-        good: 50,
-        bad: 50
-    });
+    $.getJSON("http://localhost:8080/positiondata?user=1", function(result){
+        piechart('#chart1', result['daily']);
+        piechart('#chart2', result['weekly']);
+        piechart('#chart3', result['monthly']);
+    })
+});
 
-    piechart('#chart2', {
-        good: 80,
-        bad: 20
-    });
-
-    piechart('#chart3', {
-        good: 40,
-        bad: 60
-    });
-})
+// $(document).ready(function(){
+//     piechart('#chart1', {
+//         good: 50,
+//         bad: 50
+//     });
+//
+//     piechart('#chart2', {
+//         good: 80,
+//         bad: 20
+//     });
+//
+//     piechart('#chart3', {
+//         good: 40,
+//         bad: 60
+//     });
+// })

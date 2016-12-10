@@ -214,12 +214,12 @@
                 <div class="decoration"></div>
                 <div class="containe no-bottom bottom-binded page-weight">
                     <h3>Your weight status:</h3>
-                    <strong id="count">20kg</strong>
+                    <strong id="count"></strong>
                     <script type="text/javascript">
                         $(function(){
-                            $.getJSON("http://localhost:8080/positiondata?user=1", function(result){
+                            $.getJSON("http://localhost:8080/weight?user=1", function(results){
                                 var current = 0;
-                                var value = result;
+                                var value = results[results.length-1].value;
                                 function inc(){
                                     if(current<value){
                                         current+=3;
@@ -276,9 +276,10 @@
                     <h3>Your weight status</h3>
                     <div class="ct-chart ct-perfect-fourth"></div>
                     <script type="text/javascript">
-                        $.getJSON("http://localhost:8080/positiondata?user=1", function(result){
+                        $.getJSON("http://localhost:8080/weight?user=1", function(results){
+                            console.log(results)
                             var data = {
-                                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+                                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
                                     series: [
                                         [5, 2, 4, 2, 0]
                                     ]
@@ -331,7 +332,7 @@
                     <h3>Your weight status</h3>
                     <div class="ct-chart2 ct-perfect-fourth"></div>
                     <script type="text/javascript">
-                        $.getJSON("http://localhost:8080/positiondata?user=1", function(result){
+                        $.getJSON("http://localhost:8080/weight?user=1", function(results){
                             var data = {
                                     labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
                                     series: [
