@@ -11,6 +11,7 @@
           href="http://www.enableds.com/products/profiler/images/splash/splash-screen.png"
           media="screen and (max-device-width: 320px)">
     <title>Epsilon Mobile Framework - Version 2.0</title>
+    <link rel="stylesheet" href="css/chartist.min.css">
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <link href="css/framework.css" rel="stylesheet" type="text/css">
     <link href="css/owl.carousel.css" rel="stylesheet" type="text/css">
@@ -23,6 +24,7 @@
     <script type="text/javascript" src="js/framework.plugins.js"></script>
     <script type="text/javascript" src="js/custom.js"></script>
     <script type="text/javascript" src="js/piechart.js"></script>
+    <script src="js/chartist.min.js"></script>
 
     <style media="screen">
         html {
@@ -162,9 +164,9 @@
     <div id="content" class="page-content">
         <div class="homepage-top">
             <div class="homepage-header">
-                <a class="open-nav" href="#"><i class="fa fa-navicon"></i></a>
+                <!-- <a class="open-nav" href="#"><i class="fa fa-navicon"></i></a> -->
                 <img src="img/logo.png" class="top-logo" />
-                <a href=""><i class="fa fa-envelope"></i></a>
+                <!-- <a href=""><i class="fa fa-envelope"></i></a> -->
             </div>
             <div class="homepage-controls">
                 <a class="homepage-box-one-deploy active-homepage" href="">Today</a>
@@ -177,7 +179,7 @@
             <div class="homepage-box-one active-homepage-box">
                 <div class="container">
 
-                    <div class="chart is-hidden">
+                    <div id="chart1" class="chart is-hidden">
                         <div class="chart__desc chart__desc--good">
                             <h2>Good :)</h2>
                             <strong></strong>
@@ -210,39 +212,133 @@
 
                 </div>
                 <div class="decoration"></div>
-                <div class="containe no-bottom bottom-binded">
-                    <h3>Your weight status</h3>
-                    <!-- here will be weight chart [START]-->
-                    <img src="img/health-chart.jpg" class="tmp-img"/>
-                    <!-- here will be weight chart [END]-->
+                <div class="containe no-bottom bottom-binded page-weight">
+                    <h3>Your weight status:</h3>
+                    <strong id="count">20kg</strong>
+                    <script type="text/javascript">
+                        $(function(){
+                            var current = 0;
+                            var value = 70;
+                            function inc(){
+                                if(current<value){
+                                    current+=3;
+                                    $('#count').text(current+'kg');
+                                    setTimeout(inc,50);
+                                }else{
+                                    $('#count').text(value+'kg');
+                                }
+                            }
+                            inc();
+                        });
+                    </script>
                 </div>
             </div>
             <div class="homepage-box-two">
                 <div class="container">
                     <!-- here will be circle chart [START]-->
-                    <h3 class="homepage-heading">
-                        <img src="img/circle.png" class="tmp-img" />
-                    </h3>
+
+                    <div id="chart2" class="chart is-hidden">
+                        <div class="chart__desc chart__desc--good">
+                            <h2>Good :)</h2>
+                            <strong></strong>
+                            <span></span>
+                        </div>
+                        <div class="chart__desc chart__desc--bad">
+                            <h2>Bad :(</h2>
+                            <strong></strong>
+                            <span></span>
+                        </div>
+                        <svg width="300" height="240">
+                            <defs>
+                                <linearGradient id="good" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%"   stop-color="#52e28c"/>
+                                    <stop offset="100%" stop-color="#32bc69"/>
+                                </linearGradient>
+                                <linearGradient id="bad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%"   stop-color="#e55151"/>
+                                    <stop offset="100%" stop-color="#ca2121"/>
+                                </linearGradient>
+                            </defs>
+                            <path id="goodArc" fill="none" stroke="url(#good)" stroke-width="40"/>
+                            <path id="badArc" fill="none" stroke="url(#bad)" stroke-width="40"/>
+                            <circle id="goodCircle" cx="0" cy="0" r="10" stroke="#fff" fill="none" stroke-width="4"/>
+                            <path id="goodPath" stroke="#fff" stroke-width="2"/>
+                            <circle id="badCircle" cx="0" cy="0" r="10" stroke="#fff" fill="none" stroke-width="4"/>
+                            <path id="badPath" d="" stroke="#fff" stroke-width="2"/>
+                        </svg>
+                    </div>
+
                     <!-- here will be circle chart [END]-->
                 </div>
-                <div class="decoration"></div>
-                <div class="containe no-bottom bottom-binded">
+                <div class="containe no-bottom bottom-binded page-weight">
                     <h3>Your weight status</h3>
-                    <!-- here will be weight chart [START]-->
-                    <img src="img/health-chart.jpg" class="tmp-img"/>
-                    <!-- here will be weight chart [END]-->
+                    <div class="ct-chart ct-perfect-fourth"></div>
+                    <script type="text/javascript">
+                        var data = {
+                                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+                                series: [
+                                    [5, 2, 4, 2, 0]
+                                ]
+                            };
+                        var options = {
+                            width: '300px',
+                            height: '165px'
+                        };
+                        new Chartist.Line('.ct-chart', data, options);
+                    </script>
                 </div>
             </div>
             <div class="homepage-box-three">
                 <div class="container">
-                    <h3 class="homepage-heading">
-                        <img src="img/circle.png" class="tmp-img" />
-                    </h3>
+
+                    <div id="chart3" class="chart is-hidden">
+                        <div class="chart__desc chart__desc--good">
+                            <h2>Good :)</h2>
+                            <strong></strong>
+                            <span></span>
+                        </div>
+                        <div class="chart__desc chart__desc--bad">
+                            <h2>Bad :(</h2>
+                            <strong></strong>
+                            <span></span>
+                        </div>
+                        <svg width="300" height="240">
+                            <defs>
+                                <linearGradient id="good" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%"   stop-color="#52e28c"/>
+                                    <stop offset="100%" stop-color="#32bc69"/>
+                                </linearGradient>
+                                <linearGradient id="bad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%"   stop-color="#e55151"/>
+                                    <stop offset="100%" stop-color="#ca2121"/>
+                                </linearGradient>
+                            </defs>
+                            <path id="goodArc" fill="none" stroke="url(#good)" stroke-width="40"/>
+                            <path id="badArc" fill="none" stroke="url(#bad)" stroke-width="40"/>
+                            <circle id="goodCircle" cx="0" cy="0" r="10" stroke="#fff" fill="none" stroke-width="4"/>
+                            <path id="goodPath" stroke="#fff" stroke-width="2"/>
+                            <circle id="badCircle" cx="0" cy="0" r="10" stroke="#fff" fill="none" stroke-width="4"/>
+                            <path id="badPath" d="" stroke="#fff" stroke-width="2"/>
+                        </svg>
+                    </div>
+
                 </div>
-                <div class="decoration"></div>
-                <div class="containe no-bottom bottom-binded">
+                <div class="containe no-bottom bottom-binded page-weight">
                     <h3>Your weight status</h3>
-                    <img src="img/health-chart.jpg" class="tmp-img"/>
+                    <div class="ct-chart2 ct-perfect-fourth"></div>
+                    <script type="text/javascript">
+                        var data = {
+                                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+                                series: [
+                                    [5, 2, 4, 2, 0]
+                                ]
+                            };
+                        var options = {
+                            width: '300px',
+                            height: '165px'
+                        };
+                        new Chartist.Line('.ct-chart2', data, options);
+                    </script>
                 </div>
             </div>
             <div class="container no-bottom">

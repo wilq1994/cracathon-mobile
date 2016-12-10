@@ -664,3 +664,46 @@ html,body{
     width: 105%;
     margin-left: -2%;
 }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+.page-weight h3 {
+    color: #fff;
+    font-weight: 300;
+    font-size: 20px;
+    text-align: center;
+    animation: fadeIn 0.5s ease;
+}
+
+.page-weight strong {
+    text-align: center;
+    display: block;
+    color: #fff;
+    font-weight: 700;
+    font-size: 74px;
+    line-height: 90px;
+    text-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.ct-grid {
+    stroke: rgba(255, 255, 255, 0.34);
+}
+
+.ct-label {
+    color: rgba(255, 255, 255, 0.87);
+}
+
+.ct-line {
+    stroke: #fff !important;
+    stroke-width: 2;
+}
+
+.ct-point {
+    stroke: #fff !important;
+}

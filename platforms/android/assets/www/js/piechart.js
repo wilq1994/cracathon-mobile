@@ -1,18 +1,18 @@
 var $ = jQuery;
 
-function piechart(json){
+function piechart(container, json){
     var data = {
         good: {
             current: 0,
             max: (json.good / 100) * 360,
             hours: (json.good / 100) * 8,
-            element: $("#goodArc")
+            element: $("#goodArc", container)
         },
         bad: {
             current: 0,
             max: (json.bad / 100) * 360,
             hours: (json.bad / 100) * 8,
-            element: $("#badArc")
+            element: $("#badArc", container)
         }
     }
 
@@ -39,17 +39,17 @@ function piechart(json){
     function goodCircle(x, y, radius, angle) {
         var pos = polarToCartesian(x, y, radius, angle/2);
 
-        $('#goodCircle').attr("cx",pos.x);
-        $('#goodCircle').attr("cy",pos.y);
-        $('#goodPath').attr("d","M260 160 L"+pos.x+" "+pos.y);
+        $('#goodCircle', container).attr("cx",pos.x);
+        $('#goodCircle', container).attr("cy",pos.y);
+        $('#goodPath', container).attr("d","M260 160 L"+pos.x+" "+pos.y);
     }
 
     function badCircle(x, y, radius, angle) {
         var pos = polarToCartesian(x, y, radius, angle/2);
 
-        $('#badCircle').attr("cx",pos.x);
-        $('#badCircle').attr("cy",pos.y);
-        $('#badPath').attr("d","M40 80 L"+pos.x+" "+pos.y);
+        $('#badCircle', container).attr("cx",pos.x);
+        $('#badCircle', container).attr("cy",pos.y);
+        $('#badPath', container).attr("d","M40 80 L"+pos.x+" "+pos.y);
     }
 
     function render(type){
@@ -62,7 +62,7 @@ function piechart(json){
             data[type].current = data[type].max;
             if(type==='good') render('bad');
             if(type==='bad'){
-                $('.chart').removeClass('is-hidden');
+                $(container).removeClass('is-hidden');
             }
         }
 
@@ -72,10 +72,10 @@ function piechart(json){
             data[type].element.attr("d", describeArc(150, 120, radius, 0, data[type].current));
         }
     }
-    $('.chart__desc--good strong').text(json.good+'%');
-    $('.chart__desc--good span').text(data.good.hours+'h spent');
-    $('.chart__desc--bad strong').text(json.bad+'%');
-    $('.chart__desc--bad span').text(data.bad.hours+'h spent');
+    $('.chart__desc--good strong', container).text(json.good+'%');
+    $('.chart__desc--good span', container).text(data.good.hours+'h spent');
+    $('.chart__desc--bad strong', container).text(json.bad+'%');
+    $('.chart__desc--bad span', container).text(data.bad.hours+'h spent');
 
     render('good');
 
@@ -83,6 +83,25 @@ function piechart(json){
     badCircle(150,120,radius,data.good.max+data.good.max+data.bad.max);
 }
 
-$.getJSON("http://localhost:8080/positiondata?user=1", function(result){
-    piechart(result['daily']);
+// $.getJSON("http://localhost:8080/positiondata?user=1", function(result){
+//     piechart('#chart1', result['daily']);
+//     piechart('#chart2', result['daily']);
+//     piechart('#chart3', result['daily']);
+// })
+
+$(document).ready(function(){
+    piechart('#chart1', {
+        good: 50,
+        bad: 50
+    });
+
+    piechart('#chart2', {
+        good: 80,
+        bad: 20
+    });
+
+    piechart('#chart3', {
+        good: 40,
+        bad: 60
+    });
 })
