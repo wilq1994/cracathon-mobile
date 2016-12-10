@@ -22,6 +22,89 @@
     <script type="text/javascript" src="js/jqueryui.js"></script>
     <script type="text/javascript" src="js/framework.plugins.js"></script>
     <script type="text/javascript" src="js/custom.js"></script>
+    <script type="text/javascript" src="js/piechart.js"></script>
+
+    <style media="screen">
+        html {
+            height: 100%;
+        }
+
+        body {
+            background: #253356;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            font-family: 'Arial';
+        }
+
+        .chart {
+            position: relative;
+        }
+
+        .chart__desc {
+            position: absolute;
+            color: #fff;
+            text-align: center;
+            text-shadow: 0 0 10px rgba(0,0,0,0.8);
+            opacity: 1;
+            transition: all 0.3s ease 0.5s;
+        }
+
+        .chart__desc h2 {
+            margin: 0;
+            display: block;
+        }
+
+        .chart__desc strong {
+            margin: 3px 0;
+            display: block;
+            font-size: 30px;
+        }
+
+        .chart__desc span {
+            margin: 0;
+            font-size: 14px;
+            color: #cdcdcd;
+        }
+
+        .chart__desc--good{
+            right: 0;
+            bottom: 0;
+        }
+            .is-hidden .chart__desc--good, .is-hidden #goodCircle, .is-hidden #goodPath {
+                transform: translate3d(50px,0,0);
+                opacity: 0;
+            }
+
+        .chart__desc--good h2 {
+            color: #52e28c;
+        }
+
+        .chart__desc--bad{
+            left: 0;
+            top: 0;
+        }
+            .is-hidden .chart__desc--bad, .is-hidden #badCircle, .is-hidden #badPath {
+                transform: translate3d(-50px,0,0);
+                opacity: 0;
+            }
+
+        .chart__desc--bad h2 {
+            color: #e55151;
+        }
+
+        #goodCircle, #badCircle {
+            transition: all 0.3s ease;
+            opacity: 1;
+        }
+
+        #goodPath, #badPath {
+            transition: all 0.3s ease 0.2s;
+            opacity: 1;
+        }
+    </style>
 </head>
 <body>
 <div id="preloader" style="display: none;">
@@ -93,14 +176,45 @@
         <div class="content">
             <div class="homepage-box-one active-homepage-box">
                 <div class="container">
-                    <h3 class="homepage-heading">
-                        <img src="img/circle.png" class="tmp-img" />
-                    </h3>
+
+                    <div class="chart is-hidden">
+                        <div class="chart__desc chart__desc--good">
+                            <h2>Good :)</h2>
+                            <strong></strong>
+                            <span></span>
+                        </div>
+                        <div class="chart__desc chart__desc--bad">
+                            <h2>Bad :(</h2>
+                            <strong></strong>
+                            <span></span>
+                        </div>
+                        <svg width="300" height="240">
+                            <defs>
+                                <linearGradient id="good" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%"   stop-color="#52e28c"/>
+                                    <stop offset="100%" stop-color="#32bc69"/>
+                                </linearGradient>
+                                <linearGradient id="bad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%"   stop-color="#e55151"/>
+                                    <stop offset="100%" stop-color="#ca2121"/>
+                                </linearGradient>
+                            </defs>
+                            <path id="goodArc" fill="none" stroke="url(#good)" stroke-width="40"/>
+                            <path id="badArc" fill="none" stroke="url(#bad)" stroke-width="40"/>
+                            <circle id="goodCircle" cx="0" cy="0" r="10" stroke="#fff" fill="none" stroke-width="4"/>
+                            <path id="goodPath" stroke="#fff" stroke-width="2"/>
+                            <circle id="badCircle" cx="0" cy="0" r="10" stroke="#fff" fill="none" stroke-width="4"/>
+                            <path id="badPath" d="" stroke="#fff" stroke-width="2"/>
+                        </svg>
+                    </div>
+
                 </div>
                 <div class="decoration"></div>
                 <div class="containe no-bottom bottom-binded">
                     <h3>Your weight status</h3>
+                    <!-- here will be weight chart [START]-->
                     <img src="img/health-chart.jpg" class="tmp-img"/>
+                    <!-- here will be weight chart [END]-->
                 </div>
             </div>
             <div class="homepage-box-two">
@@ -136,7 +250,5 @@
         </div>
     </div>
 </div>
-
-
 </body>
 </html>
