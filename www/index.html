@@ -1,49 +1,142 @@
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
 <html>
-    <head>
-        <!--
-        Customize this policy to fit your own app's needs. For more guidance, see:
-            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
-        Some notes:
-            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
-            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-                * Enable inline JS: add 'unsafe-inline' to default-src
-        -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
-        <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <link rel="stylesheet" type="text/css" href="css/index.css">
-        <title>Hello World</title>
-    </head>
-    <body>
-        <div class="app">
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+          href="http://www.enableds.com/products/profiler/images/splash/splash-icon.png">
+    <link rel="apple-touch-startup-image"
+          href="http://www.enableds.com/products/profiler/images/splash/splash-screen.png"
+          media="screen and (max-device-width: 320px)">
+    <title>Epsilon Mobile Framework - Version 2.0</title>
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="css/framework.css" rel="stylesheet" type="text/css">
+    <link href="css/owl.carousel.css" rel="stylesheet" type="text/css">
+    <link href="css/owl.theme.css" rel="stylesheet" type="text/css">
+    <link href="css/swipebox.css" rel="stylesheet" type="text/css">
+    <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
+    <link href="css/animate.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jqueryui.js"></script>
+    <script type="text/javascript" src="js/framework.plugins.js"></script>
+    <script type="text/javascript" src="js/custom.js"></script>
+</head>
+<body>
+<div id="preloader" style="display: none;">
+    <div id="status" style="display: none;">
+        <p class="center-text">
+            Loading the content...
+            <em>Please wait. We are doing our best :)</em>
+        </p>
+    </div>
+</div>
+<div class="all-elements">
+    <div id="sidebar" class="page-sidebar">
+        <div class="page-sidebar-scroll">
+            <div class="sidebar-shortcuts">
+                <a class="close-nav" href=""><i class="fa fa-times"></i></a>
+            </div>
+            <div class="sidebar-logo">
+                <img src="img/logo-big.png" width="160" alt="img">
+            </div>
+            <div class="sidebar-breadcrumb">NAVIGATION</div>
+            <div class="navigation-item">
+                <a href="" class="current nav-item">
+                    <i class="fa fa-home"></i>
+                    Link 1
+                    <i class="fa fa-circle"></i>
+                </a>
+            </div>
+            <div class="sidebar-decoration"></div>
+            <div class="navigation-item">
+                <a href="" class="current nav-item">
+                    <i class="fa fa-home"></i>
+                    Link 1
+                    <i class="fa fa-circle"></i>
+                </a>
+            </div>
+            <div class="sidebar-decoration"></div>
+            <div class="navigation-item">
+                <a href="" class="current nav-item">
+                    <i class="fa fa-home"></i>
+                    Link 1
+                    <i class="fa fa-circle"></i>
+                </a>
+            </div>
+            <div class="sidebar-decoration"></div>
+            <div class="navigation-item">
+                <a href="" class="current nav-item">
+                    <i class="fa fa-home"></i>
+                    Link 1
+                    <i class="fa fa-circle"></i>
+                </a>
+            </div>
+            <div class="sidebar-decoration"></div>
+        </div>
+    </div>
+    <div id="content" class="page-content">
+        <div class="homepage-top">
+            <div class="homepage-header">
+                <a class="open-nav" href="#"><i class="fa fa-navicon"></i></a>
+                <img src="img/logo.png" class="top-logo" />
+                <a href=""><i class="fa fa-envelope"></i></a>
+            </div>
+            <div class="homepage-controls">
+                <a class="homepage-box-one-deploy active-homepage" href="">Today</a>
+                <a class="homepage-box-two-deploy" href="">Week</a>
+                <a class="homepage-box-three-deploy" href="">Month</a>
+            </div>
+            <div class="overlay"></div>
+        </div>
+        <div class="content">
+            <div class="homepage-box-one active-homepage-box">
+                <div class="container">
+                    <h3 class="homepage-heading">
+                        <img src="img/circle.png" class="tmp-img" />
+                    </h3>
+                </div>
+                <div class="decoration"></div>
+                <div class="containe no-bottom bottom-binded">
+                    <h3>Your weight status</h3>
+                    <img src="img/health-chart.jpg" class="tmp-img"/>
+                </div>
+            </div>
+            <div class="homepage-box-two">
+                <div class="container">
+                    <!-- here will be circle chart [START]-->
+                    <h3 class="homepage-heading">
+                        <img src="img/circle.png" class="tmp-img" />
+                    </h3>
+                    <!-- here will be circle chart [END]-->
+                </div>
+                <div class="decoration"></div>
+                <div class="containe no-bottom bottom-binded">
+                    <h3>Your weight status</h3>
+                    <!-- here will be weight chart [START]-->
+                    <img src="img/health-chart.jpg" class="tmp-img"/>
+                    <!-- here will be weight chart [END]-->
+                </div>
+            </div>
+            <div class="homepage-box-three">
+                <div class="container">
+                    <h3 class="homepage-heading">
+                        <img src="img/circle.png" class="tmp-img" />
+                    </h3>
+                </div>
+                <div class="decoration"></div>
+                <div class="containe no-bottom bottom-binded">
+                    <h3>Your weight status</h3>
+                    <img src="img/health-chart.jpg" class="tmp-img"/>
+                </div>
+            </div>
+            <div class="container no-bottom">
             </div>
         </div>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-    </body>
+    </div>
+</div>
+
+
+</body>
 </html>
