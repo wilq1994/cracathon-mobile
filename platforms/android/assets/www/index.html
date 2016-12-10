@@ -214,21 +214,23 @@
                 <div class="decoration"></div>
                 <div class="containe no-bottom bottom-binded page-weight">
                     <h3>Your weight status:</h3>
-                    <strong id="count">20kg</strong>
+                    <strong id="count"></strong>
                     <script type="text/javascript">
                         $(function(){
-                            var current = 0;
-                            var value = 70;
-                            function inc(){
-                                if(current<value){
-                                    current+=3;
-                                    $('#count').text(current+'kg');
-                                    setTimeout(inc,50);
-                                }else{
-                                    $('#count').text(value+'kg');
+                            $.getJSON("http://localhost:8080/weight?user=1", function(results){
+                                var current = 0;
+                                var value = parseInt(results[results.length-1].value);
+                                function inc(){
+                                    if(current<value){
+                                        current+=3;
+                                        $('#count').text(current+'kg');
+                                        setTimeout(inc,50);
+                                    }else{
+                                        $('#count').text(value+'kg');
+                                    }
                                 }
-                            }
-                            inc();
+                                inc();
+                            });
                         });
                     </script>
                 </div>
@@ -274,17 +276,22 @@
                     <h3>Your weight status</h3>
                     <div class="ct-chart ct-perfect-fourth"></div>
                     <script type="text/javascript">
-                        var data = {
-                                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
-                                series: [
-                                    [5, 2, 4, 2, 0]
-                                ]
+                        $.getJSON("http://localhost:8080/weight?user=1", function(results){
+                            var series = results.splice(-7,7).map(function(item){
+                                return item.value;
+                            });
+
+                            var data = {
+                                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                                    series: [series]
+                                };
+
+                            var options = {
+                                width: '300px',
+                                height: '165px'
                             };
-                        var options = {
-                            width: '300px',
-                            height: '165px'
-                        };
-                        new Chartist.Line('.ct-chart', data, options);
+                            new Chartist.Line('.ct-chart', data, options);
+                        })
                     </script>
                 </div>
             </div>
@@ -327,17 +334,28 @@
                     <h3>Your weight status</h3>
                     <div class="ct-chart2 ct-perfect-fourth"></div>
                     <script type="text/javascript">
-                        var data = {
-                                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
-                                series: [
-                                    [5, 2, 4, 2, 0]
-                                ]
+                        $.getJSON("http://localhost:8080/weight?user=1", function(results){
+                            var labels, series = [];
+
+                            labels = results.map(function(item){
+                                return item.date;
+                            });
+
+                            series = results.map(function(item){
+                                return item.value;
+                            });
+
+                            var data = {
+                                    labels: labels,
+                                    series: [series]
+                                };
+
+                            var options = {
+                                width: '300px',
+                                height: '165px'
                             };
-                        var options = {
-                            width: '300px',
-                            height: '165px'
-                        };
-                        new Chartist.Line('.ct-chart2', data, options);
+                            new Chartist.Line('.ct-chart2', data, options);
+                        })
                     </script>
                 </div>
             </div>

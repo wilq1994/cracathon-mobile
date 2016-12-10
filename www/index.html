@@ -219,7 +219,7 @@
                         $(function(){
                             $.getJSON("http://localhost:8080/weight?user=1", function(results){
                                 var current = 0;
-                                var value = results[results.length-1].value;
+                                var value = parseInt(results[results.length-1].value);
                                 function inc(){
                                     if(current<value){
                                         current+=3;
@@ -277,13 +277,15 @@
                     <div class="ct-chart ct-perfect-fourth"></div>
                     <script type="text/javascript">
                         $.getJSON("http://localhost:8080/weight?user=1", function(results){
-                            console.log(results)
+                            var series = results.splice(-7,7).map(function(item){
+                                return item.value;
+                            });
+
                             var data = {
                                     labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-                                    series: [
-                                        [5, 2, 4, 2, 0]
-                                    ]
+                                    series: [series]
                                 };
+
                             var options = {
                                 width: '300px',
                                 height: '165px'
@@ -333,12 +335,21 @@
                     <div class="ct-chart2 ct-perfect-fourth"></div>
                     <script type="text/javascript">
                         $.getJSON("http://localhost:8080/weight?user=1", function(results){
+                            var labels, series = [];
+
+                            labels = results.map(function(item){
+                                return item.date;
+                            });
+
+                            series = results.map(function(item){
+                                return item.value;
+                            });
+
                             var data = {
-                                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
-                                    series: [
-                                        [5, 2, 4, 2, 0]
-                                    ]
+                                    labels: labels,
+                                    series: [series]
                                 };
+
                             var options = {
                                 width: '300px',
                                 height: '165px'
