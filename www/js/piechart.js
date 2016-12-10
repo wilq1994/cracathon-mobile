@@ -1,11 +1,6 @@
 var $ = jQuery;
 
-$(function(){
-    var json = {
-        good: 60,
-        bad: 40
-    }
-
+function piechart(json){
     var data = {
         good: {
             current: 0,
@@ -86,4 +81,8 @@ $(function(){
 
     goodCircle(150,120,radius,data.good.max);
     badCircle(150,120,radius,data.good.max+data.good.max+data.bad.max);
-});
+}
+
+$.getJSON("http://localhost:8080/positiondata?user=1", function(result){
+    piechart(result[0]['daily']);
+})
