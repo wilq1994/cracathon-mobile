@@ -1,5 +1,11 @@
 @charset "utf-8";
+
+html,body{
+    height: 100%;
+}
+
 .all-elements {
+    height: 100%;
     overflow-x: hidden;
 }
 
@@ -8,6 +14,7 @@
     z-index: 10;
     display: block;
     min-height: 568px;
+    height: 100%;
 }
 
 .page-content-wrapper {
@@ -203,7 +210,7 @@
 }
 
 .homepage-top {
-    background-image: url(../img/5.jpg);
+    background-color: #0099de;
     margin-bottom: 30px;
 }
 
@@ -213,6 +220,12 @@
     height: 51px;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.2);
+}
+
+.homepage-header .top-logo{
+    width: 80px;
+    margin: 13px auto 0;
+    display: block;
 }
 
 .header {
@@ -365,6 +378,14 @@
     margin-right: auto;
     margin-bottom: 0px;
     transition: all 200ms ease;
+}
+
+.tmp-img{
+    width: 100%;
+}
+
+.tmp-img:last-child{
+    margin-bottom: 20px;
 }
 
 @media (min-width: 768px) {
