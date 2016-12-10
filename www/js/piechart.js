@@ -90,20 +90,3 @@ $(document).ready(function(){
         piechart('#chart3', result['monthly']);
     })
 });
-
-// $(document).ready(function(){
-//     piechart('#chart1', {
-//         good: 50,
-//         bad: 50
-//     });
-//
-//     piechart('#chart2', {
-//         good: 80,
-//         bad: 20
-//     });
-//
-//     piechart('#chart3', {
-//         good: 40,
-//         bad: 60
-//     });
-// })

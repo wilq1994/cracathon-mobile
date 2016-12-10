@@ -338,7 +338,7 @@
                             var labels, series = [];
 
                             labels = results.map(function(item){
-                                return item.date;
+                                return item.date.split('-')[0];
                             });
 
                             series = results.map(function(item){
